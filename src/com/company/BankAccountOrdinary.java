@@ -47,8 +47,8 @@ public class BankAccountOrdinary extends Bank implements BankAccount{
 
     @Override
     public String toString() {
-        return "Active = " + active +
-                ", Customer = { " + customer
-                + " }";
+        return "ID = " + id +
+                ", Customer = { " + customer +
+                " }, Balance = " + balance;
     }
 }

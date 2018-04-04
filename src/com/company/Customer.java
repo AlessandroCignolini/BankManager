@@ -12,8 +12,14 @@ public class Customer extends Bank{
         this._surname = _surname;
     }
 
-    public void newBankAccount(BankAccount ba){   //TODO assegnare id conto corrente a cliente
+    public void newBankAccount(BankAccount ba){
         _list.add(ba);
+        System.out.println("Bank account added successfully");
+    }
+
+    public void removeBankAccount(BankAccount ba){
+        _list.remove(ba);
+        System.out.println("Bank account removed successfully");
     }
 
     public String get_name() {

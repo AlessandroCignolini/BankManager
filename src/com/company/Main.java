@@ -16,13 +16,19 @@ public class Main {
         System.out.println("3) print all the bank accounts");
         System.out.print(">");
         String input = file.nextLine();
-        if (input.equals("1")){
-            first(file, Bank);
-        } else if (input.equals("2")){
-            second(file, Bank);
-        } else if (input.equals("3")){
-            third(file, Bank);
-        } else {
+        if (input.equals("stop")){
+            System.exit(0);
+        }
+        try {
+            switch (Integer.parseInt(input)) {
+                case 1: first(file, Bank);
+                    break;
+                case 2: second(file, Bank);
+                    break;
+                case 3: third(file, Bank);
+                    break;
+            }
+        } catch (Exception e){
             System.err.println("Insert a valid number");
             start(Bank);
         }
@@ -31,7 +37,7 @@ public class Main {
     public static void first(Scanner file, Bank Bank){
         try {
             System.out.println("Enter the file name without .txt (the default path is /tmp/):");
-            String input = file.nextLine();
+            String input = file.nextLine().toUpperCase();
             String path = "/tmp/" + input + ".txt";
             System.out.println("File to analyze: " + path);
             BufferedReader br = new BufferedReader(new FileReader(path));
@@ -55,9 +61,9 @@ public class Main {
                     System.out.println("");
                     line = br.readLine();
 
-                    Customer Customer1 = new Customer(name, "Rossi");
-                    Bank.addCustomer(Customer1);
-                    Bank.addBankAccount(new BankAccountOrdinary(1200, Customer1));
+                    Customer Customer = new Customer(name, "Rossi");
+                    Bank.addCustomer(Customer);
+                    Bank.addBankAccount(new BankAccountOrdinary(Integer.parseInt(number), Customer));
                 }
             }
                 if (c == 'T') {
@@ -90,7 +96,6 @@ public class Main {
     }
 
     public static void main(String[] args) throws Exception {
-        //LETTURA DATI INPUT DA FILE
         Bank Bank = new Bank();
         start(Bank);
     }
